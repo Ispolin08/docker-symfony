@@ -1,0 +1,6 @@
+/.env
+/.data
+/.logs
+/php.ini
+/nginx/symfony.conf
+/.idea

@@ -1,0 +1,40 @@
+version: '2'
+
+# One network for all containers
+networks:
+  ispolin-local:
+    external:
+      name: ispolin-local
+
+services:
+    php:
+        # Will be used for reverse proxy
+        container_name: ${CONTAINER_NAME_PREFIX}_php
+        build:
+            context: php7-fpm
+            args:
+                TIMEZONE: ${TIMEZONE}
+
+        networks:
+            - ispolin-local
+
+        volumes:
+        # Map config if you want
+#            - ./php7-fpm/php.ini:/usr/local/etc/php/php.ini:ro
+
+            - ${SYMFONY_APP_PATH}:/var/www/symfony:cached
+
+            - ./.logs/symfony:/var/www/symfony/var/logs
+    nginx:
+#        container_name: ${CONTAINER_NAME_PREFIX}_nginx
+        build:
+            context: nginx
+        ports:
+            - ${LOCAL_PORT}:80
+        networks:
+           - ispolin-local
+
+        volumes_from:
+            - php
+        volumes:
+            - ./.logs/nginx/:/var/log/nginx
