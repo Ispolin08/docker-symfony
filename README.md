@@ -15,7 +15,7 @@ all projects on one host. You will find containers for this services soon here.
 ```
 cp ./.env.dist ./.env
 cp ./nginx/symfony.conf.dist ./nginx/symfony.conf
-chmod 755 hello_world
+chmod 755 rebuild-all
 ```
 
 - Change parameters in this files as you need
