@@ -26,7 +26,7 @@ services:
 
             - ./.logs/symfony:/var/www/symfony/var/logs
     nginx:
-#        container_name: ${CONTAINER_NAME_PREFIX}_nginx
+        container_name: ${CONTAINER_NAME_PREFIX}_nginx
         build:
             context: nginx
         ports:

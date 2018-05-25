@@ -2,20 +2,18 @@
 FROM php:7.1-fpm
 ARG TIMEZONE
 
-MAINTAINER Ispolin POUTORD <ispolin08@gmail.com>
+MAINTAINER Stepan Gavrileko <stepan@gavrilenko.work>
 
 RUN apt-get update && apt-get install -y \
     openssl \
     git \
     unzip \
     mc \
-    libpng-dev \
-    htop \ 
-    telnet 
+    libpng-dev
 
 # Install Composer
-#RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-#RUN composer --version
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN composer --version
 
 # Set timezone
 RUN ln -snf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && echo ${TIMEZONE} > /etc/timezone
@@ -43,17 +41,4 @@ RUN echo "xdebug.remote_host=host.docker.internal" >> /usr/local/etc/php/conf.d/
 # for debugging 
 #RUN echo "xdebug.remote_log=/var/www/symfony/var/logs/xd.log" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
-
-#RUN echo "xdebug.remote_handler=dbgp" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-#RUN echo "xdebug.remote_mode=\"req\"" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-
-# install opcache
-#RUN docker-php-ext-enable opcache
-
-#RUN echo 'alias sf="php app/console"' >> ~/.bashrc
-#RUN echo 'alias sf3="php bin/console"' >> ~/.bashrc
-
-#WORKDIR /var/www/symfony
-
-#EXPOSE 9000
-#RUN composer install
+WORKDIR /var/www/symfony
