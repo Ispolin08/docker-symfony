@@ -38,3 +38,5 @@ services:
             - php
         volumes:
             - ./.logs/nginx/:/var/log/nginx
+            # HTTP auth password support
+#            - ./nginx/htpasswd:/etc/nginx/
