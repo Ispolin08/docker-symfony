@@ -1,0 +1,11 @@
+server {
+    # setup host name
+    server_name     *.dev1.local;
+    location / {
+        # container name
+        proxy_pass  http://dev1-nginx/;
+	    proxy_set_header Host $host;
+    }
+    error_log /var/log/nginx/app.log;
+    access_log /var/log/nginx/app.log;
+}
