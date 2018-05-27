@@ -3,4 +3,5 @@
 /.logs
 /php.ini
 /nginx/symfony.conf
+/nginx/.htpasswd
 /.idea
