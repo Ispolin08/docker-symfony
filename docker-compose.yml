@@ -39,4 +39,4 @@ services:
         volumes:
             - ./.logs/nginx/:/var/log/nginx
             # HTTP auth password support
-#            - ./nginx/.htpasswd:/etc/nginx/
+#            - ./nginx/.htpasswd:/etc/nginx/.htpasswd

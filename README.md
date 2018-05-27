@@ -18,8 +18,14 @@ cp ./nginx/symfony.conf.dist ./nginx/symfony.conf
 chmod 755 rebuild-all
 ```
 
-- Change parameters in this files as you need
+- Change parameters in this files as you need. 
 
+If You are planning to use http auth you have to uncomment line in docker-compose.yml and
+create .htpasswd file in ./nginx folder. This file will be mounted to container. Also you have
+to uncomment lines in ./nginx/symfony.conf
+
+
+- Run for rebuilding all containers
 ```
 ./rebuild-all
 ```
@@ -33,15 +39,12 @@ chmod 755 rebuild-all
 - Run composer from inside docker container 
 
 ```
-127.0.0.1 dev1
+docker-compose exec -it php composer install
+
 ```
 
 - Update database and do composer update if you want. Do it from php container.
 
-```
-docker-compose exec -it php composer install
-
-```
 
 ## Check
 
@@ -53,4 +56,7 @@ docker -ps
 Now you can see 2 new containers. 
 
 If you run http://dev1:3000/app_dev.php you will get to your symfony application.
+
+
+## Reverse proxy
 
